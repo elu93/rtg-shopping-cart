@@ -1,34 +1,36 @@
-import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
-import ProductItem from "./product-item"
-import "../../assets/css/components/product/product-list.css"
+import React from "react";
+import ProductItem from "./product-item";
+import Cart from '../../pages/cart';
+import "../../assets/css/components/product/product-list.css";
+import allDataJson from '../../lib/data/products.json';
 
-const ProductList = () => {
-  const { allDataJson } = useStaticQuery(
-    graphql`
-      query {
-        allDataJson {
-          edges {
-            node {
-              products {
-                sku
-                title
-                price
-                image
-              }
-            }
-          }
-        }
-      }
-    `
-  )
+class ProductList extends React.Component {
+  constructor(props) {
+    super(props)
+      this.state = {
+        cart: []
+      };
 
-  return(
-    <div className="product-list grid-x grid-margin-y">
-      { allDataJson.edges[0].node.products.map(product => (
-        <ProductItem { ...product } key={ product.sku } />
-      )) }
-    </div>
-  )
+      this.addHandle = this.addHandle.bind(this);
+  }
+
+  addHandle = (product) => {
+    this.setState({
+      cart: [...this.state.cart, product],
+      showCart: false
+    });
+  }
+
+  render() {
+    return(
+      <div className="product-list grid-x grid-margin-y">
+        <Cart cartItems={this.state.cart}/>
+        { allDataJson.products.map(product => (
+          <ProductItem product={product} key={ product.sku } addHandle={ this.addHandle } />
+        )) }
+      </div>
+    )
+  }
 }
-export default ProductList
+
+export default ProductList;

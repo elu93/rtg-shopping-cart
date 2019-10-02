@@ -26,21 +26,6 @@ const Header = ({ siteTitle }) => (
         >
           { siteTitle }
         </Link>
-        <Link
-          to="/cart"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-            fontSize: `1rem`,
-            float: `right`,
-            position: `absolute`,
-            top: `1.5rem`,
-            right: `1.0875rem`,
-            fontWeight: `700`
-          }}
-        >
-          CART
-        </Link>
       </h1>
     </div>
   </header>
