@@ -2,7 +2,7 @@ import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Cart from '../src/pages/cart';
 import Adapter from 'enzyme-adapter-react-16';
-import TestRunner from 'jest-runner';
+
 
 Enzyme.configure({ adapter: new Adapter() });
 
